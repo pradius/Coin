@@ -34,8 +34,9 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.ktor.android)
             implementation(libs.koin.android)
-            implementation(libs.ktor.client.cio)
+            implementation(libs.koin.androidx.compose)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -47,17 +48,32 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
-            // Project specific libraries
+            // Project specific libraries - Coil (Image Loading)
             implementation(libs.coil.compose)
-            implementation(libs.ktor.client.core)
-            implementation(libs.ktor.client.content.negotiation)
-            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.coil.compose.core)
+            implementation(libs.coil.network.ktor)
+            implementation(libs.coil.core)
+            implementation(libs.coil.svg)
+
+            // Ktor (HTTP Client)
+            implementation(libs.bundles.ktor)
+
+            // Kotlinx utilities
             implementation(libs.kotlinx.datetime)
             implementation(libs.kotlinx.serialization.json)
+
+            // Database (Room + SQLite)
             implementation(libs.room.runtime)
-            implementation(libs.sqlite.driver)
-            implementation(libs.koin.core)
+            implementation(libs.sqlite.bundled)
+
+            // Dependency Injection (Koin)
+            api(libs.koin.core)
             implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
+            implementation(libs.koin.compose.navigation)
+        }
+        iosMain.dependencies {
+            implementation(libs.ktor.ios)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
