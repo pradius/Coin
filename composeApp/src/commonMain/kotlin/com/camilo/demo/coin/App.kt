@@ -18,11 +18,12 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 import coin.composeapp.generated.resources.Res
 import coin.composeapp.generated.resources.compose_multiplatform
+import com.camilo.demo.coin.theme.AppTheme
 
 @Composable
 @Preview
 fun App() {
-    MaterialTheme {
+    AppTheme {
         var showContent by remember { mutableStateOf(false) }
         Column(
             modifier = Modifier
