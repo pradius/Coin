@@ -9,7 +9,7 @@ data class CoinsResponseDto(
 
 @Serializable
 data class CoinListDto (
-    val data: List<CoinItemDto>
+    val coins: List<CoinItemDto>
 )
 
 @Serializable

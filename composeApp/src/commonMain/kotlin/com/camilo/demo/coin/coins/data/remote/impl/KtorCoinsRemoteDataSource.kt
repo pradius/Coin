@@ -7,6 +7,7 @@ import io.ktor.client.HttpClient
 import com.camilo.demo.coin.coins.domain.api.CoinsRemoteDataSource
 import com.camilo.demo.coin.core.domain.DataError
 import com.camilo.demo.coin.core.domain.Result
+import com.camilo.demo.coin.core.domain.coin.Coin
 import com.camilo.demo.coin.core.network.safeCall
 import io.ktor.client.request.get
 
