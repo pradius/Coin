@@ -1,5 +1,5 @@
 [versions]
-agp = "8.7.3"
+agp = "8.7.2"
 android-compileSdk = "35"
 android-minSdk = "24"
 android-targetSdk = "35"
@@ -28,6 +28,7 @@ koin = "4.0.0"
 assertk = "0.25"
 turbine = "0.7.0"
 core-ktx = "1.7.0"
+kermit = "2.0.4"
 
 
 
@@ -73,6 +74,7 @@ koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", versi
 
 assertk = { module = "com.willowtreeapps.assertk:assertk", version.ref = "assertk" }
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

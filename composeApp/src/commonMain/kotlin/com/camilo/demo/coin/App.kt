@@ -18,11 +18,16 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 import coin.composeapp.generated.resources.Res
 import coin.composeapp.generated.resources.compose_multiplatform
+import com.camilo.demo.coin.core.logging.AppLogger
 import com.camilo.demo.coin.theme.AppTheme
 
 @Composable
 @Preview
 fun App() {
+    LaunchedEffect(Unit) {
+        AppLogger.i("App composable started", tag = "App")
+    }
+    
     AppTheme {
         var showContent by remember { mutableStateOf(false) }
         Column(
@@ -32,11 +37,15 @@ fun App() {
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Button(onClick = { showContent = !showContent }) {
+            Button(onClick = { 
+                AppLogger.d("Button clicked, showContent was: $showContent", tag = "App")
+                showContent = !showContent 
+            }) {
                 Text("Click me!")
             }
             AnimatedVisibility(showContent) {
                 val greeting = remember { Greeting().greet() }
+                AppLogger.d("Showing greeting: $greeting", tag = "App")
                 Column(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,

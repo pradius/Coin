@@ -1,5 +1,6 @@
 package com.camilo.demo.coin.core.network
 
+import com.camilo.demo.coin.core.logging.AppLogger
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.HttpTimeout
@@ -13,6 +14,8 @@ import kotlinx.serialization.json.Json
 
 object HttpClientFactory {
     fun create(engine: HttpClientEngine): HttpClient {
+        AppLogger.i("Creating HTTP client", tag = "HttpClient")
+        
         return HttpClient(engine) {
             install(ContentNegotiation) {
                 json(
@@ -20,16 +23,21 @@ object HttpClientFactory {
                         ignoreUnknownKeys = true
                     }
                 )
+                AppLogger.d("Installed ContentNegotiation plugin", tag = "HttpClient")
             }
             install(HttpTimeout) {
                 socketTimeoutMillis = 20_000L
                 requestTimeoutMillis = 20_000L
+                AppLogger.d("Installed HttpTimeout plugin with 20s timeout", tag = "HttpClient")
             }
             install(HttpCache)
+            AppLogger.d("Installed HttpCache plugin", tag = "HttpClient")
+            
             defaultRequest {
                 // https://developers.coinranking.com/api/documentation
                 headers.append("x-access-token", "coinrankingdf47875e3bcc17fb7a5a3caa169bb81952aaab645f1a10b5")
                 contentType(ContentType.Application.Json)
+                AppLogger.d("Configured default request headers", tag = "HttpClient")
             }
         }
     }

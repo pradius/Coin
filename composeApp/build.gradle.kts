@@ -71,6 +71,9 @@ kotlin {
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
             implementation(libs.koin.compose.navigation)
+            
+            // Logging (Kermit)
+            implementation(libs.kermit)
         }
         iosMain.dependencies {
             implementation(libs.ktor.ios)

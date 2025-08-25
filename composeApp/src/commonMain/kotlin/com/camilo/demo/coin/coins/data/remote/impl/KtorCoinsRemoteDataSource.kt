@@ -3,6 +3,7 @@ package com.camilo.demo.coin.coins.data.remote.impl
 import com.camilo.demo.coin.coins.data.remote.dto.CoinDetailsResponseDto
 import com.camilo.demo.coin.coins.data.remote.dto.CoinPriceHistoryResponseDto
 import com.camilo.demo.coin.coins.data.remote.dto.CoinsResponseDto
+import com.camilo.demo.coin.core.logging.AppLogger
 import io.ktor.client.HttpClient
 import com.camilo.demo.coin.coins.domain.api.CoinsRemoteDataSource
 import com.camilo.demo.coin.core.domain.DataError
@@ -18,18 +19,21 @@ class KtorCoinsRemoteDataSource(
 ) : CoinsRemoteDataSource {
 
     override suspend fun getListOfCoins(): Result<CoinsResponseDto, DataError.Remote> {
+        AppLogger.i("Fetching list of coins", tag = "CoinsDataSource")
         return safeCall {
             httpClient.get("$BASE_URL/coins")
         }
     }
 
     override suspend fun getPriceHistory(coinId: String): Result<CoinPriceHistoryResponseDto, DataError.Remote> {
+        AppLogger.i("Fetching price history for coin: $coinId", tag = "CoinsDataSource")
         return safeCall {
             httpClient.get("$BASE_URL/coin/$coinId/history")
         }
     }
 
     override suspend fun getCoinById(coinId: String): Result<CoinDetailsResponseDto, DataError.Remote> {
+        AppLogger.i("Fetching coin details for coin: $coinId", tag = "CoinsDataSource")
         return safeCall {
             httpClient.get("$BASE_URL/coin/$coinId")
         }
